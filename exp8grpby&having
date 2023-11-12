@@ -1,0 +1,292 @@
+Expt 8
+
+Create two tables
+1. Dept(Department_Id, Department_Name , Manager_id, Loc)
+Primary Key: Department_Id
+2. Emp(Emp_no , Emp_name,Job , Salary , Hiredate,Comm , Depno )
+Primary key : EMP_no
+
+mysql> select * from Dept;
++---------------+-----------------+------------+------------+
+| department_id | department_name | manager_id | loc        |
++---------------+-----------------+------------+------------+
+|             1 | Administration  |          2 | Boston     |
+|             2 | Marketing       |          1 | Boston     |
+|             3 | Purchase        |          8 | perryridge |
+|             4 | Programming     |          7 | Hudson     |
+|             5 | HR              |       NULL | Hudson     |
++---------------+-----------------+------------+------------+
+
+
+emp
++--------+-----------+------------+------------+--------+------+-------+
+| EMP_no | Emp_name  | Job        | Hiredata   | Salary | Comm | Depno |
++--------+-----------+------------+------------+--------+------+-------+
+|      1 | Steven    | Marketing  | 1995-01-06 |  24000 | NULL |     2 |
+|      2 | Neena     | FI_ACCOUNT | 1987-02-06 |  34000 | NULL |     1 |
+|      3 | Lex       | FI_MGR     | 1980-01-06 | 240000 | NULL |     1 |
+|      4 | Alexander | Sa_Rep     | 1987-06-06 |  20000 | NULL |     4 |
+|      5 | Bruce     | IT_PROG    | 1990-07-06 |  24000 | NULL |     4 |
+|      6 | David     | IT_PROG    | 1991-09-06 |  22000 | NULL |     4 |
+|      7 | vipin     | IT_PROG    | 1987-11-16 |  28000 | NULL |     4 |
+|      8 | Diana     | Pur_Man    | 1987-01-26 |  24000 | NULL |     3 |
+|      9 | John      | FI_ACCOUNT | 1992-12-01 |  24000 | NULL |     1 |
+|     10 | Ismael    | CLERK      | 1994-03-29 |   4000 | NULL |     3 |
+|     11 | Mathew    | CLERK      | 1992-10-12 |  46000 |  200 |     3 |
+|     12 | Hayes     | Marketing  | 1998-04-21 |  14000 | 1000 |     3 |
+|     13 | sarun     | Marketing  | 1993-05-18 |  18000 | NULL |     2 |
+|     14 | Henin     | FI_MGR     | 1980-08-06 | 240000 | NULL |     1 |
+|     15 | Greesh    | Clerk      | 1980-08-06 | 240000 | NULL |     5 |
++--------+-----------+------------+------------+--------+------+-------+
+
+
+
+#1 Display the name and salary for all employees whose salary is not in the range of
+5000 and 35000
+
++----------+--------+
+| Emp_name | Salary |
++----------+--------+
+| Lex      | 240000 |
+| Ismael   |   4000 |
+| Mathew   |  46000 |
+| Henin    | 240000 |
+| Greesh   | 240000 |
++----------+--------+
+
+#2 Display the employee name, job ID, and start date of employees hired between
+February 20, 1990, and May 1, 1998. Order the query in ascending order by start
+date.
+
++----------+--------+------------+------------+
+| Emp_name | Salary | Job        | Hiredata   |
++----------+--------+------------+------------+
+| Bruce    |  24000 | IT_PROG    | 1990-07-06 |
+| David    |  22000 | IT_PROG    | 1991-09-06 |
+| Mathew   |  46000 | CLERK      | 1992-10-12 |
+| John     |  24000 | FI_ACCOUNT | 1992-12-01 |
+| sarun    |  18000 | Marketing  | 1993-05-18 |
+| Ismael   |   4000 | CLERK      | 1994-03-29 |
+| Steven   |  24000 | Marketing  | 1995-01-06 |
+| Hayes    |  14000 | Marketing  | 1998-04-21 |
++----------+--------+------------+------------+
+
+#3 list the name and salary of employees who earn between 5,000 and12,000, and are
+in department 2 or 4. Label the columns Employee and Monthly Salary,respectively.
+
++-----------+----------------+-------+
+| Employee  | Monthly Salary | Depno |
++-----------+----------------+-------+
+| Steven    |          24000 |     2 |
+| Alexander |          20000 |     4 |
+| Bruce     |          24000 |     4 |
+| David     |          22000 |     4 |
+| vipin     |          28000 |     4 |
+| sarun     |          18000 |     2 |
++-----------+----------------+-------+
+
+#4 Display the name and hire date of every employee who was hired in 1994.
+
+select Emp_name, hiredate from Emp where hiredate like '1994%';
++----------+------------+
+| Emp_name | hiredata   |
++----------+------------+
+| Ismael   | 1994-03-29 |
++----------+------------+
+
+#5 Display the name, salary, and commission for all employees who earn
+commissions. Sort data in descending order of salary and commissions.
++----------+--------+------+
+| Emp_name | Salary | Comm |
++----------+--------+------+
+| Mathew   |  46000 |  200 |
+| Hayes    |  14000 | 1000 |
++----------+--------+------+
+
+#6 Display the name and job title of all employees who do not have a manager.
++----------+-------+
+| Emp_name | Job   |
++----------+-------+
+| Greesh   | Clerk |
++----------+-------+
+1 row in set (0.00 sec
+
+#7 Display the names of all employees where the third letter of the name is an a.
++----------+
+| Emp_name |
++----------+
+| Diana    |
++----------+
+
+#8 Display the name of all employees who have an a and an e in their name.
+
++-----------+
+| Emp_name  |
++-----------+
+| Neena     |
+| Alexander |
+| Ismael    |
+| Mathew    |
+| Hayes     |
++-----------+
+
+#9 Display the name, job, and salary for all employees whose job is sales
+representative or stock clerk and whose salary is not equal to 2,0000, 4000, or 7,000
+
++-----------+--------+--------+
+| Emp_name  | Job    | Salary |
++-----------+--------+--------+
+| Alexander | Sa_Rep |  20000 |
+| Mathew    | CLERK  |  46000 |
+| Greesh    | Clerk  | 240000 |
++-----------+--------+--------+
+
+#10 Write a query that displays the employee’s names with the first letter capitalized
+and all other letters lowercase and the length of the name for all employees whose
+name starts with J, A, or M. Give each column an appropriate label. Sort the results
+by the employees’ names.
+
++-----------+--------+
+| Name      | Length |
++-----------+--------+
+| ALEXANDER |      9 |
+| JOHN      |      4 |
+| MATHEW    |      6 |
++-----------+--------+
+3 rows in set (0.01 sec)
+
+#11 Write a query to display the name, department number, and department name for
+al employees.
+
++-----------+-------+-----------------+
+| Emp_name  | Depno | department_name |
++-----------+-------+-----------------+
+| Henin     |     1 | Administration  |
+| Neena     |     1 | Administration  |
+| John      |     1 | Administration  |
+| Lex       |     1 | Administration  |
+| Greesh    |     5 | HR              |
+| sarun     |     2 | Marketing       |
+| Steven    |     2 | Marketing       |
+| Alexander |     4 | Programming     |
+| Bruce     |     4 | Programming     |
+| David     |     4 | Programming     |
+| vipin     |     4 | Programming     |
+| Ismael    |     3 | Purchase        |
+| Mathew    |     3 | Purchase        |
+| Hayes     |     3 | Purchase        |
+| Diana     |     3 | Purchase        |
++-----------+-------+-----------------+
+15 rows in set (0.00 sec)
+
+#12 Create a query to display the name and hire date of any employee hired after
+employee Mathew
+
++----------+------------+
+| Emp_Name | Hiredata   |
++----------+------------+
+| Steven   | 1995-01-06 |
+| John     | 1992-12-01 |
+| Ismael   | 1994-03-29 |
+| Hayes    | 1998-04-21 |
+| sarun    | 1993-05-18 |
++----------+------------+
+
+#13 Display the names and hire dates for all employees who were hired before their
+managers, along with their manager’s names and hire dates. Label the columns
+Employee, EmpHired, Manager, and Mgr Hired, respectively.
+
++--------+-----------+---------------+---------+--------------+------------------+
+| EMP_no | Employee  | EMP Hire Data | dept no | Manager Name | Manager Hiredata |
++--------+-----------+---------------+---------+--------------+------------------+
+|      3 | Lex       | 1980-01-06    |       1 | Neena        | 1987-02-06       |
+|      4 | Alexander | 1987-06-06    |       4 | vipin        | 1987-11-16       |
+|     13 | sarun     | 1993-05-18    |       2 | Steven       | 1995-01-06       |
+|     14 | Henin     | 1980-08-06    |       1 | Neena        | 1987-02-06       |
++--------+-----------+---------------+---------+--------------+------------------+
+
+#14 Write a query to display the number of people with the same job.
+
++------------+-------------+
+| Job        | No: of Jobs |
++------------+-------------+
+| CLERK      |           3 |
+| FI_ACCOUNT |           2 |
+| FI_MGR     |           2 |
+| IT_PROG    |           3 |
+| Marketing  |           3 |
+| Pur_Man    |           1 |
+| Sa_Rep     |           1 |
++------------+-------------+
+#15 Display the manager number and the salary of the lowest paid employee for that
+manager.Exclude anyone whose manager is not known. Exclude any groups where
+the minimum salary is less than 6,000. Sort the output in descending order of salary
+
++----------------+------------+-----------------+
+| MINIMUM SALARY | manager_id | department_name |
++----------------+------------+-----------------+
+|          18000 |          1 | Marketing       |
+|          24000 |          2 | Administration  |
+|          20000 |          7 | Programming     |
++----------------+------------+-----------------+
+
+#16 Write a query to display each department’s name, location, number of
+employees, and the average salary for all employees in that department. Label the
+columns Name, Location, Number of People, and Salary, respectively. Round the
+average salary to two decimal places
+
++----------------+------------+------------------+-----------+
+| Name           | Location   | Number of People | Salary    |
++----------------+------------+------------------+-----------+
+| Administration | Boston     |                4 | 134500.00 |
+| HR             | Hudson     |                1 | 240000.00 |
+| Marketing      | Boston     |                2 |  21000.00 |
+| Programming    | Hudson     |                4 |  23500.00 |
+| Purchase       | perryridge |                4 |  22000.00 |
++----------------+------------+------------------+-----------+
+
+#17 Write a query to display the name and hire date of any employee in the same
+department as amit. Exclude JOHN.
+
++----------+------------+
+| Emp_name | Hiredata   |
++----------+------------+
+| Neena    | 1987-02-06 |
+| Lex      | 1980-01-06 |
+| Henin    | 1980-08-06 |
++----------+------------+
+
+#18 Write a query that displays the employee numbers names of all employees who work in a
+# department with any employee whose name contains a u.
+
++--------+-----------+-----------------+
+| EMP_no | Emp_name  | department_name |
++--------+-----------+-----------------+
+|      1 | Steven    | Marketing       |
+|      4 | Alexander | Programming     |
+|      5 | Bruce     | Programming     |
+|      6 | David     | Programming     |
+|      7 | vipin     | Programming     |
+|     13 | sarun     | Marketing       |
++--------+-----------+-----------------+
+
+19 display employee name and department name of all employees that work in a
+department that has at least 2 employees. Order the list in alphabetical order first by
+department name, then by employee name
+
++-----------+-----------------+
+| Emp_name  | department_name |
++-----------+-----------------+
+| Henin     | Administration  |
+| John      | Administration  |
+| Lex       | Administration  |
+| Neena     | Administration  |
+| Alexander | Programming     |
+| Bruce     | Programming     |
+| David     | Programming     |
+| vipin     | Programming     |
+| Diana     | Purchase        |
+| Hayes     | Purchase        |
+| Ismael    | Purchase        |
+| Mathew    | Purchase        |
++-----------+-----------------+
