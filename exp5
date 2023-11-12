@@ -1,0 +1,243 @@
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| stud_id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| stud_fname | varchar(20) | YES  |     | NULL    |                |
+| stud_lname | varchar(20) | YES  |     | NULL    |                |
+| stud_email | varchar(20) | YES  |     | NULL    |                |
+| stud_ph    | varchar(10) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+
+
+ select * from Student;
++---------+------------+------------+--------------------+------------+
+| stud_id | stud_fname | stud_lname | stud_email         | stud_ph    |
++---------+------------+------------+--------------------+------------+
+|     100 | shanti     | vasan      | shantiv@gmail.com  | 9677483824 |
+|     101 | anjitha    | k          | anjithak@gmail.com | 9574884993 |
+|     102 | riya       | khan       | riyakhan@gmail.com | 9637833993 |
++---------+------------+------------+--------------------+------------+
+
+desc Subject;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| sub_id   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| sub_name | varchar(20) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+select * from Subject;
++--------+-----------+
+| sub_id | sub_name  |
++--------+-----------+
+|    200 | chemistry |
+|    201 | physics   |
+|    202 | maths     |
++--------+-----------+
+
+
+desc Marks;
++---------+---------+------+-----+---------+-------+
+| Field   | Type    | Null | Key | Default | Extra |
++---------+---------+------+-----+---------+-------+
+| sub_id  | int(11) | NO   | PRI | NULL    |       |
+| stud_id | int(11) | NO   | PRI | NULL    |       |
+| marks   | int(11) | YES  |     | NULL    |       |
++---------+---------+------+-----+---------+-------+
+
+ select * from Marks;
++--------+---------+-------+
+| sub_id | stud_id | marks |
++--------+---------+-------+
+|    200 |     100 |    75 |
+|    200 |     101 |    94 |
+|    200 |     102 |    60 |
+|    201 |     100 |    85 |
+|    201 |     101 |    98 |
+|    201 |     102 |    70 |
+|    202 |     100 |    50 |
+|    202 |     101 |    96 |
+|    202 |     102 |    45 |
++--------+---------+-------+
+
+select * from Student where stud_id=100;
++---------+------------+------------+-------------------+------------+
+| stud_id | stud_fname | stud_lname | stud_email        | stud_ph    |
++---------+------------+------------+-------------------+------------+
+|     100 | shanti     | rajan      | shantiv@gmail.com | 9677483824 |
++---------+------------+------------+-------------------+------------+
+
+
+update Subject set sub_name='mathematics' where sub_id=202;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Subject where sub_id=202;
++--------+-------------+
+| sub_id | sub_name    |
++--------+-------------+
+|    202 | mathematics |
++--------+-------------+
+
+
+update Marks set marks=83 where sub_id=200 AND stud_id=102;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Marks where sub_id=200 and stud_id=102;
++--------+---------+-------+
+| sub_id | stud_id | marks |
++--------+---------+-------+
+|    200 |     102 |    83 |
++--------+---------+-------+
+
+
+ select * from Student;
++---------+------------+------------+--------------------+------------+
+| stud_id | stud_fname | stud_lname | stud_email         | stud_ph    |
++---------+------------+------------+--------------------+------------+
+|     100 | shanti     | rajan      | shantiv@gmail.com  | 9677483824 |
+|     101 | anjitha    | k          | anjithak@gmail.com | 9574884993 |
+|     102 | riya       | khan       | riyakhan@gmail.com | 9637833993 |
++---------+------------+------------+--------------------+------------+
+
+
+ select * from Subject;
++--------+-------------+
+| sub_id | sub_name    |
++--------+-------------+
+|    200 | chemistry   |
+|    201 | physics     |
+|    202 | mathematics |
++--------+-------------+
+
+select * from Marks;
++--------+---------+-------+
+| sub_id | stud_id | marks |
++--------+---------+-------+
+|    200 |     100 |    75 |
+|    200 |     101 |    94 |
+|    200 |     102 |    83 |
+|    201 |     100 |    85 |
+|    201 |     101 |    98 |
+|    201 |     102 |    70 |
+|    202 |     100 |    50 |
+|    202 |     101 |    96 |
+|    202 |     102 |    45 |
++--------+---------+-------+
+
+ select * from Student where stud_id=102;
++---------+------------+------------+--------------------+------------+
+| stud_id | stud_fname | stud_lname | stud_email         | stud_ph    |
++---------+------------+------------+--------------------+------------+
+|     102 | riya       | khan       | riyakhan@gmail.com | 9637833993 |
++---------+------------+------------+--------------------+------------+
+
+# Write a query to display student name, subject and marks of student ordered by marks.
+
++------------+-------------+-------+
+| stud_fname | sub_name    | marks |
++------------+-------------+-------+
+| riya       | mathematics |    45 |
+| shanti     | mathematics |    50 |
+| riya       | physics     |    70 |
+| shanti     | chemistry   |    75 |
+| riya       | chemistry   |    83 |
+| shanti     | physics     |    85 |
+| anjitha    | chemistry   |    94 |
+| anjitha    | mathematics |    96 |
+| anjitha    | physics     |    98 |
++------------+-------------+-------+
+9 rows in set (0.00 sec)
+
+# Write a query to display student name, subject and marks of students who have marks greater than 70 in physics.
+
++------------+----------+-------+
+| stud_fname | sub_name | marks |
++------------+----------+-------+
+| shanti     | physics  |    85 |
+| anjitha    | physics  |    98 |
++------------+----------+-------+
+2 rows in set (0.00 sec)
+
+# Write a query to display average marks in each subject.
+
++-------------+------------+
+| sub_name    | avg(marks) |
++-------------+------------+
+| chemistry   |    84.0000 |
+| mathematics |    63.6667 |
+| physics     |    84.3333 |
++-------------+------------+
+3 rows in set (0.02 sec)
+
+# Write a query to display the number of students.
+
++----------------+
+| count(stud_id) |
++----------------+
+|              3 |
++----------------+
+1 row in set (0.00 sec)
+
+# Write a query to display the maximum and minimum marks obtained by students in each subject.
+
++-------------+------------+------------+
+| sub_name    | max(marks) | min(marks) |
++-------------+------------+------------+
+| chemistry   |         94 |         75 |
+| mathematics |         96 |         45 |
+| physics     |         98 |         70 |
++-------------+------------+------------+
+3 rows in set (0.00 sec)
+
+# Write a query to display the details of a student whose name begins with S.
+
++---------+------------+------------+-------------------+------------+
+| stud_id | stud_fname | stud_lname | stud_email        | stud_ph    |
++---------+------------+------------+-------------------+------------+
+|     100 | shanti     | rajan      | shantiv@gmail.com | 9677483824 |
++---------+------------+------------+-------------------+------------+
+1 row in set (0.00 sec)
+
+# Write a query to display the details of a student whose first name contains a in the fourth place.
+
++---------+------------+------------+--------------------+------------+
+| stud_id | stud_fname | stud_lname | stud_email         | stud_ph    |
++---------+------------+------------+--------------------+------------+
+|     102 | riya       | khan       | riyakhan@gmail.com | 9637833993 |
++---------+------------+------------+--------------------+------------+
+
+# Write a query to display the name,subject and marks of students having marks between 50 and 75.
+
++------------+-------------+-------+
+| stud_fname | sub_name    | marks |
++------------+-------------+-------+
+| shanti     | chemistry   |    75 |
+| riya       | physics     |    70 |
+| shanti     | mathematics |    50 |
++------------+-------------+-------+
+3 rows in set (0.00 sec)
+
+#Create a view to display student name and marks
+
+mysql> create view student_view as select stud_fname, stud_lname, sub_name,marks from Student, Subject, Marks where Student.stud_id=Marks.stud_id and Subject.sub_id=Marks.sub_id;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create view student_view as select stud_fname, stud_lname, sub_name,marks from Student, Subject, Marks where Student.stud_id=Marks.stud_id and Subject.sub_id=Marks.sub_id;
+ERROR 1050 (42S01): Table 'student_view' already exists
+mysql>  
+mysql> select * from student_view;
++------------+------------+-------------+-------+
+| stud_fname | stud_lname | sub_name    | marks |
++------------+------------+-------------+-------+
+| shanti     | rajan      | chemistry   |    75 |
+| shanti     | rajan      | physics     |    85 |
+| shanti     | rajan      | mathematics |    50 |
+| anjitha    | k          | chemistry   |    94 |
+| anjitha    | k          | physics     |    98 |
+| anjitha    | k          | mathematics |    96 |
+| riya       | khan       | chemistry   |    83 |
+| riya       | khan       | physics     |    70 |
+| riya       | khan       | mathematics |    45 |
++------------+------------+-------------+-------+
+9 rows in set (0.00 sec)
