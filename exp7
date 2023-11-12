@@ -1,0 +1,245 @@
+mysql> select * from Faculty;
++--------+-----------+
+| F_Code | F_Name    |
++--------+-----------+
+|    101 | Silgy     |
+|    102 | Bindu     |
+|    103 | Vidhya    |
+|    104 | Sangeetha |
+|    105 | Jayakumar |
++--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from M_marks;
+ERROR 1146 (42S02): Table 'db.M_marks' doesn't exist
+mysql> select * from M_mark;
++-------------+-------------+------+
+| studentcode | subjectcode | mark |
++-------------+-------------+------+
+| 1           | 501         |   40 |
+| 1           | 502         |   70 |
+| 1           | 503         |   50 |
+| 1           | 504         |   80 |
+| 1           | 505         |   40 |
+| 1           | 508         |   70 |
+| 10          | 501         |   50 |
+| 10          | 504         |    1 |
+| 10          | 505         |   74 |
+| 11          | 501         |   60 |
+| 11          | 508         |   98 |
+| 12          | 501         |   40 |
+| 12          | 503         |   67 |
+| 2           | 501         |   90 |
+| 2           | 502         |   89 |
+| 2           | 503         |   77 |
+| 2           | 504         |   95 |
+| 2           | 505         |   74 |
+| 2           | 508         |   98 |
+| 3           | 501         |   40 |
+| 3           | 502         |   43 |
+| 3           | 503         |   40 |
+| 3           | 504         |   40 |
+| 3           | 505         |   40 |
+| 3           | 508         |   35 |
+| 4           | 501         |   50 |
+| 5           | 501         |   60 |
+| 5           | 502         |   43 |
+| 5           | 504         |   23 |
+| 6           | 501         |   67 |
+| 6           | 502         |   43 |
+| 6           | 503         |   40 |
+| 6           | 504         |   23 |
+| 7           | 501         |   23 |
+| 7           | 504         |   40 |
+| 7           | 505         |   42 |
+| 8           | 501         |   43 |
+| 8           | 505         |   40 |
+| 9           | 501         |   42 |
+| 9           | 504         |    1 |
+| 9           | 508         |   35 |
++-------------+-------------+------+
+41 rows in set (0.00 sec)
+
+mysql> select * from Student;
++-------------+-------------+------------+---------------+------------+
+| studentcode | studentname | dob        | studentbranch | adate      |
++-------------+-------------+------------+---------------+------------+
+| 1           | Amitha      | 1987-01-12 | cs            | 2000-06-01 |
+| 10          | fahan       | 1988-03-20 | cs            | 2000-06-05 |
+| 11          | ginu        | 1988-04-13 | cs            | 2000-06-10 |
+| 12          | hamna       | 1985-05-14 | cs            | 2000-06-09 |
+| 2           | vaidehi     | 1988-12-25 | cs            | 2000-06-01 |
+| 3           | varun       | 1988-10-02 | cs            | 2000-06-02 |
+| 4           | turner      | 1988-09-05 | cs            | 2000-06-02 |
+| 5           | vani        | 1988-07-20 | cs            | 2000-06-05 |
+| 6           | binu        | 1988-08-13 | cs            | 2000-06-10 |
+| 7           | chitra      | 1986-11-14 | cs            | 2000-06-09 |
+| 8           | dona        | 1991-12-02 | cs            | 2000-06-02 |
+| 9           | elana       | 1990-02-05 | cs            | 2000-06-02 |
++-------------+-------------+------------+---------------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from Subject;
++-------------+-------------+---------+--------------+
+| subjectcode | subjectname | maxmark | faculty_code |
++-------------+-------------+---------+--------------+
+| 501         | Maths       |     150 |          101 |
+| 502         | FCA         |     100 |          102 |
+| 503         | DBMS        |     100 |          105 |
+| 504         | OS          |      75 |          103 |
+| 505         | DC          |     200 |          104 |
+| 508         | DBMSLab     |    1001 |          103 |
++-------------+-------------+---------+--------------+
+6 rows in set (0.00 sec)
+
+
+#Display the number of faculties.
++------------------+
+| No of Faculty =  |
++------------------+
+|                5 |
++------------------+
+
+#2) Display the total mark for each student.
+
++-------------+------------+
+| studentname | Total Mark |
++-------------+------------+
+| Amitha      |        350 |
+| binu        |        173 |
+| chitra      |        105 |
+| dona        |         83 |
+| elana       |         78 |
+| fahan       |        125 |
+| ginu        |        158 |
+| hamna       |        107 |
+| turner      |         50 |
+| vaidehi     |        523 |
+| vani        |        126 |
+| varun       |        238 |
++-------------+------------+
+
+#3) Display the subject,average mark for each subject.
+
++-------------+--------------+
+| subjectname | Average mark |
++-------------+--------------+
+| DBMS        |        54.80 |
+| DBMSLab     |        67.20 |
+| DC          |        51.67 |
+| FCA         |        57.60 |
+| Maths       |        50.42 |
+| OS          |        37.88 |
++-------------+--------------+
+
+4) Display the name of subjects for which atleast one student got
+below 40%.
+
++-------------+-----------------+
+| subjectname | NO: OF STUDENTS |
++-------------+-----------------+
+| DBMSLab     |               5 |
+| DC          |               6 |
+| Maths       |               8 |
+| OS          |               4 |
++-------------+-----------------+
+
+Display the name,subject and percentage of mark who got below
+40 %.
+
++-------------+-------------+------+---------+------------+
+| studentname | subjectname | mark | maxmark | Percentage |
++-------------+-------------+------+---------+------------+
+| Amitha      | Maths       |   40 |     150 |      26.67 |
+| Amitha      | DC          |   40 |     200 |      20.00 |
+| Amitha      | DBMSLab     |   70 |    1001 |       6.99 |
+| fahan       | Maths       |   50 |     150 |      33.33 |
+| fahan       | OS          |    1 |      75 |       1.33 |
+| fahan       | DC          |   74 |     200 |      37.00 |
+| ginu        | DBMSLab     |   98 |    1001 |       9.79 |
+| hamna       | Maths       |   40 |     150 |      26.67 |
+| vaidehi     | DC          |   74 |     200 |      37.00 |
+| vaidehi     | DBMSLab     |   98 |    1001 |       9.79 |
+| varun       | Maths       |   40 |     150 |      26.67 |
+| varun       | DC          |   40 |     200 |      20.00 |
+| varun       | DBMSLab     |   35 |    1001 |       3.50 |
+| turner      | Maths       |   50 |     150 |      33.33 |
+| vani        | OS          |   23 |      75 |      30.67 |
+| binu        | OS          |   23 |      75 |      30.67 |
+| chitra      | Maths       |   23 |     150 |      15.33 |
+| chitra      | DC          |   42 |     200 |      21.00 |
+| dona        | Maths       |   43 |     150 |      28.67 |
+| dona        | DC          |   40 |     200 |      20.00 |
+| elana       | Maths       |   42 |     150 |      28.00 |
+| elana       | OS          |    1 |      75 |       1.33 |
+| elana       | DBMSLab     |   35 |    1001 |       3.50 |
++-------------+-------------+------+---------+------------+
+
+6) Display the faculties and alloted subjects for each faculty
+
++-----------+-------------+
+| F_name    | subjectname |
++-----------+-------------+
+| Silgy     | Maths       |
+| Bindu     | FCA         |
+| Vidhya    | OS          |
+| Vidhya    | DBMSLab     |
+| Sangeetha | DC          |
+| Jayakumar | DBMS        |
++-----------+-------------+
+7) Display the name of faculties who take more than one subject.
+
++--------+
+| F_Name |
++--------+
+| Vidhya |
++--------+
+
+Display name,subject,mark, % of mark in ascending order of mark
+
++-------------+-------------+------+
+| studentname | subjectname | mark |
++-------------+-------------+------+
+| fahan       | OS          |    1 |
+| elana       | OS          |    1 |
+| binu        | OS          |   23 |
+| chitra      | Maths       |   23 |
+| vani        | OS          |   23 |
+| varun       | DBMSLab     |   35 |
+| elana       | DBMSLab     |   35 |
+| dona        | DC          |   40 |
+| binu        | DBMS        |   40 |
+| varun       | Maths       |   40 |
+| Amitha      | Maths       |   40 |
+| varun       | DBMS        |   40 |
+| chitra      | OS          |   40 |
+| varun       | OS          |   40 |
+| varun       | DC          |   40 |
+| Amitha      | DC          |   40 |
+| hamna       | Maths       |   40 |
+| elana       | Maths       |   42 |
+| chitra      | DC          |   42 |
+| varun       | FCA         |   43 |
+| vani        | FCA         |   43 |
+| dona        | Maths       |   43 |
+| binu        | FCA         |   43 |
+| turner      | Maths       |   50 |
+| fahan       | Maths       |   50 |
+| Amitha      | DBMS        |   50 |
+| vani        | Maths       |   60 |
+| ginu        | Maths       |   60 |
+| hamna       | DBMS        |   67 |
+| binu        | Maths       |   67 |
+| Amitha      | DBMSLab     |   70 |
+| Amitha      | FCA         |   70 |
+| fahan       | DC          |   74 |
+| vaidehi     | DC          |   74 |
+| vaidehi     | DBMS        |   77 |
+| Amitha      | OS          |   80 |
+| vaidehi     | FCA         |   89 |
+| vaidehi     | Maths       |   90 |
+| vaidehi     | OS          |   95 |
+| vaidehi     | DBMSLab     |   98 |
+| ginu        | DBMSLab     |   98 |
++-------------+-------------+------+
+
